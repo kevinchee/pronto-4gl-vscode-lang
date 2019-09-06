@@ -1,0 +1,42 @@
+#include clib
+#define MAX 10
+
+procedure proc1
+    parameters
+        lp-field        type x99
+    returning
+        lr-field        like serial
+    
+    set lr-field = 1234
+    set lf-field = "12-MMM-2019\n"
+    set lf-field = 'string\n'
+    set lf-field = 12-MMM-2019
+endprocedure //example procedure
+
+api testAPI
+    local field
+        lf-field        like serial
+    parameters
+        lp-field1       like serial
+        lp-field2       like serial
+    returning
+        lr-field        type pic
+    
+    set lf-field = TRUE
+    set lf-field = str(num(custom(lp-field2, 1000)))
+
+    do proc1 //simple call
+        parameters lp-field1
+        returning lp-field2
+
+    select * from deb-master
+    before
+    begin
+        if lf-field1
+        endif
+    after
+    endselect
+
+    if (lf-field1 and lf-field2 or (num(lf-field2) = lf-field3))
+    endif
+endapi

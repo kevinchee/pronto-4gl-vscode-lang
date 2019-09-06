@@ -1,0 +1,220 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Pronto 4GL",
+	"patterns": [{
+		"include": "#spl"
+		}, {
+		"include": "#macros"	
+		}
+	],
+	"repository": {
+		"function": {
+			"name": "meta.function.expression",
+			"begin": "\\b(api|procedure|screen)\\b\\s+(.+)\\n",
+			"beginCaptures": {
+				"1": { "name": "support.type"},
+				"2": { "name": "strong"}
+			},
+			"end": "\\s*\\b(end\\-?(api|procedure|screen))\\b",
+			"endCaptures": {
+				"1": { "name": "support.type"}
+			},
+			"patterns": [{
+				"include": "#spl"
+			}]
+		},
+		"select": {
+			"name": "support.other",
+			"begin": "\\b(select)\\b\\s+(.+)\\n",
+			"beginCaptures": {
+				"0": { "name": "support.function"}
+			},
+			"end": "\\s*\\b(end\\-?(select))\\b\\n",
+			"endCaptures": {
+				"1": { "name": "support.function"}
+			},
+			"patterns": [{
+				"include": "#spl"
+			}]
+		},
+		"builtin-functions": {
+            "name": "meta.function.expression",
+            "begin": "\\b([a-zA-Z0-9_-]+)\\b(?=\\()",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.function"
+				}
+			},
+            "end": "(?<=\\))",
+			"patterns": [{
+				"include": "#function-parameters"
+			}]
+		},
+		"control": {
+			"name": "meta.function.expression",
+			"begin": "\\b(if|for|while)\\b\\s+(.+)\\n",
+			"beginCaptures": {
+				"1": { "name": "keyword.control"},
+				"2": { "name": "meta", "patterns": [{ "include": "#conditional-scope"}]}
+			},
+			"end": "\\s*\\b(end\\-?(if|for|while))\\b\\n",
+			"endCaptures": {
+				"1": { "name": "keyword.control"}
+			},
+			"patterns": [{
+				"include": "#spl"
+			}]
+		},
+		
+		"conditional-scope": {
+			"name": "meta",
+			"begin": "\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.parameters.begin"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.parameters.end"
+				}
+			},
+			"patterns": [{
+				"include": "#comment"
+			},{
+				"include": "#strings"
+			},{
+				"include": "#constant"
+			},{
+				"include": "#builtin-functions"
+			},{
+				"include": "#dates"
+			},{
+				"include": "#constant"
+			}]
+		},
+		"function-parameters": {
+			"name": "meta.parameters",
+			"begin": "\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.parameters.begin"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.parameters.end"
+				}
+			},
+			"patterns": [{
+				"include": "#comment"
+			},{
+				"include": "#strings"
+			},{
+				"include": "#constant"
+			},{
+				"include": "#builtin-functions"
+			},{
+				"include": "#dates"
+			},{
+				"include": "#constant"
+			},{
+				"name": "punctuation.separator.parameter",
+				"match": ","
+			}]
+		},
+		"spl": {
+			"patterns": [{
+				"include": "#type"
+			},{
+				"include": "#comment"
+			},{
+				"include": "#keywords"
+			},{
+				"include": "#strings"
+			},{ 
+				"include": "#function"
+			},{ 
+				"include": "#builtin-functions"
+			},{
+				"include": "#control"
+			},{
+				"include": "#select"
+			},{
+				"include": "#constant"
+			},{
+				"include": "#dates"
+			}]
+		},
+		"constant":	{
+			"patterns": [{
+				"name": "keyword.control",
+				"match": "(?i)\\b(ZERO|SPACES|TRUE|FALSE|YES|NO)\\b"
+			}]
+		},
+		"type": {
+		 	"patterns": [{
+				"name": "support.type",
+				"match": "type\\s\\b(x|blob|boolean|alpha|pic|xml-handle|string|date|time)\\b"
+			},{
+				"name": "support.type",
+				"match": "like\\s\\b[a-zA-Z0-9_-]+\\b"
+			}]
+		},	
+		"comment": {
+			"patterns": [{
+				"name": "comment.line.double-slash",
+				"match": "//.*$"				
+			}]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.operator",
+				"match": "(?i)\\b(to|or|and|not|\\+|-|=|\\*|/|\\+=|-=|\\*=|/=|!=|<=|>=|<|>|<>)\\b"
+			},{
+				"name": "keyword.control",
+				"match": "\\b(do|set|get|link|report|display|accept|print|mode|primary|refresh|reenter|object|version-number|open)\\b($|\\s)"
+			},{
+				"name": "keyword.language.section",
+				"match": "\\b(parameters|returning|local field)\\s+"
+			},{
+				"name": "keyword.language.reserved",
+				"match": "\\b(menu|object|parameters)\\b\\s"
+			}]
+		},
+		"dates": {
+			"patterns": [{
+				"name": "constant.other",
+				"match": "\\b(\\d{1,2}-[A-Za-z]{3}+-\\d{4})\\b"
+			}]
+		},
+		"macros": {
+			"patterns": [{
+				"name": "keyword.other",
+				"match": "^#(define|include|ifndef|if|else|endif)\\b"
+			}]
+		},
+		"strings": {
+			"patterns": [{
+				"name": "string.quoted.double",
+				"begin": "\"",
+				"end": "\"",
+				"patterns": [{
+					"name": "constant.character.escape",
+					"match": "\\\\."
+				}]
+			},{
+				"name": "string.quoted.single",
+				"begin": "'",
+				"end": "'",
+				"patterns": [{
+					"name": "constant.character.escape",
+					"match": "\\\\."
+				}]
+			}]
+		}
+	},
+	"scopeName": "source.spl"
+}
