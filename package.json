@@ -2,7 +2,7 @@
     "name": "pronto-4gl-language-definition",
     "displayName": "Pronto 4GL Language Definition",
     "description": "Pronto 4GL Language Definition for vscode",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "pronto-4gl-vscode-lang",
     "homepage": "https://github.com/kevinchee/pronto-4gl-vscode-lang/blob/master/README.md",
     "bugs": {
@@ -25,17 +25,26 @@
     },
     "license": "See LICENSE",
     "contributes": {
-        "languages": [{
-            "id": "spl",
-            "aliases": ["Pronto 4GL", "spl"],
-            "extensions": [".spl"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "spl",
-            "scopeName": "source.spl",
-            "path": "./syntaxes/spl.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "spl",
+                "aliases": [
+                    "Pronto 4GL",
+                    "spl"
+                ],
+                "extensions": [
+                    ".spl"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "spl",
+                "scopeName": "source.spl",
+                "path": "./syntaxes/spl.tmLanguage.json"
+            }
+        ]
     },
     "scripts": {
         "installExt": "@powershell -NoProfile -ExecutionPolicy Unrestricted ./scripts./installExt.ps1"
