@@ -2,7 +2,7 @@
     "name": "pronto-4gl-language-definition",
     "displayName": "Pronto 4GL Language Definition",
     "description": "Pronto 4GL Language Definition for vscode",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "publisher": "pronto-4gl-vscode-lang",
     "homepage": "https://github.com/kevinchee/pronto-4gl-vscode-lang/blob/master/README.md",
     "bugs": {
