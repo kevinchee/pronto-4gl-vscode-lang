@@ -1,9 +1,10 @@
 # pronto-4gl-language-definition README
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This is an extension that provides syntax highlighting to 4GL scripts for [Pronto Xi ERP](https://www.pronto.net/products/pronto-xi-erp/). 
 
 4GL scripts enables developers to extend or generate applications within Pronto Xi.
-
 
 ## Features
 
@@ -18,10 +19,6 @@ Here is a :camera: showing the syntax highlights.
 ## Extension Settings
 
 There are currently no extension settings.
-
-## Known Issues
-
-Please check [repository](https://github.com/kevinchee/pronto-4gl-vscode-lang.git) 
 
 ## Release Notes
 

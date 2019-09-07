@@ -4,7 +4,13 @@
     "description": "Pronto 4GL Language Definition for vscode",
     "version": "0.0.1",
     "publisher": "pronto-4gl-vscode-lang",
+    "homepage": "https://github.com/kevinchee/pronto-4gl-vscode-lang/blob/master/README.md",
+    "bugs": {
+        "url": "https://github.com/kevinchee/pronto-4gl-vscode-lang/issues",
+        "email": "boonchong.kevin@gmail.com"
+    },
     "repository": {
+        "type": "git",
         "url": "https://github.com/kevinchee/pronto-4gl-vscode-lang.git"
     },
     "engines": {
@@ -13,6 +19,11 @@
     "categories": [
         "Programming Languages"
     ],
+    "galleryBanner": {
+        "color": "#C80000",
+        "theme": "dark"
+    },
+    "license": "See LICENSE",
     "contributes": {
         "languages": [{
             "id": "spl",
