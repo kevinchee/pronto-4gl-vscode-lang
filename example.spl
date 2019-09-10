@@ -3,7 +3,7 @@
 
 procedure proc1
     parameters
-        lp-field        type x99
+        lp-field        pic x99
     returning
         lr-field        like serial
     
@@ -11,7 +11,7 @@ procedure proc1
     set lf-field = "12-MMM-2019\n"
     set lf-field = 'string\n'
     set lf-field = 12-MMM-2019
-endprocedure //example procedure
+end-procedure //example procedure
 
 api testAPI
     local field
@@ -20,7 +20,7 @@ api testAPI
         lp-field1       like serial
         lp-field2       like serial
     returning
-        lr-field        type pic
+        lr-field        type int
     
     set lf-field = TRUE
     set lf-field = str(num(custom(lp-field2, 1000)))
@@ -30,11 +30,9 @@ api testAPI
         returning lp-field2
 
     select * from deb-master
-    before
-    begin
+    detail
         if lf-field1
         endif
-    after
     endselect
 
     if (lf-field1 and lf-field2 or (num(lf-field2) = lf-field3))

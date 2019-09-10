@@ -8,14 +8,14 @@
 		}
 	],
 	"repository": {
-		"procedure": {
+		"module": {
 			"name": "meta.function.expression",
-			"begin": "\\b(api|on|record|procedure|screen)\\b\\s+(.+)\\n",
+			"begin": "^\\s*\\b(api|procedure|screen)\\b\\s+(.+)\\n",
 			"beginCaptures": {
 				"1": { "name": "support.type"},
 				"2": { "name": "strong"}
 			},
-			"end": "\\s*\\b(end\\-?(api|on|record|procedure|screen))\\b",
+			"end": "^\\s*\\b(end\\-?(api|procedure|screen))\\b",
 			"endCaptures": {
 				"1": { "name": "support.type"}
 			},
@@ -122,7 +122,7 @@
 			},{
 				"include": "#strings"
 			},{ 
-				"include": "#procedure"
+				"include": "#module"
 			},{ 
 				"include": "#functions"
 			},{
@@ -146,20 +146,34 @@
 		},
 		"constant":	{
 			"patterns": [{
-				"name": "keyword.other",
-				"match": "(?i)\\s\\b(ZERO|SPACES|TRUE|FALSE|YES|NO)\\b"
+				"match": "(?i)[^\\w\\-_]\\b(ZERO|SPACES|TRUE|FALSE|YES|NO)\\b",
+				"captures": {
+					"1": { "name": "keyword.other" }
+				}
 			}]
 		},
 		"type": {
 		 	"patterns": [{
 				"name": "support.type",
-				"match": "type\\s\\b(x|blob|boolean|alpha|xml-handle|string|date|time)\\b"
+				"match": "(type)\\s\\b(x|int|blob|boolean|alpha|xml-handle|string|date|time)\\b",
+				"captures": {
+					"1": {"name": "support.type"},
+					"2": {"name": "storage.type"}
+				}
 			},{
 				"name": "support.type",
-				"match": "like\\s\\b[a-zA-Z0-9_-]+\\b"
+				"match": "(like)\\s\\b([a-zA-Z0-9_-]+)\\b",
+				"captures": {
+					"1": { "name": "support.type"},
+					"2": { "name": "variable"}
+				}
 			}, {
 				"name": "support.type",
-				"match": "pic\\s\\b[a-zA-Z0-9_-]+\\b"
+				"match": "(pic)\\s\\b([a-zA-Z0-9_-]+)\\b",
+				"captures": {
+					"1": { "name": "support.type"},
+					"2": { "name": "storage.type"}
+				}
 			}]
 		},	
 		"comment": {
@@ -171,16 +185,16 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.operator",
-				"match": "(?i)\\b(to|or|and|not|in|\\+|-|=|\\*|/|\\+=|-=|\\*=|/=|!=|<=|>=|<|>|<>)\\b"
+				"match": "(?i)\\s\\b(to|or|and|not|in|\\+|-|=|\\*|/|\\+=|-=|\\*=|/=|!=|<=|>=|<|>|<>)\\b\\s"
 			}, {
 				"name": "keyword.control",
-				"match": "\\b(exit|break)\\b"
+				"match": "^\\s*\\b(exit|break)\\b"
 			},{
 				"name": "keyword.other",
-				"match": "\\b(menu|do|set|get|link|report|display|accept|print|mode|primary|refresh|reenter|object|field|version-number|open)\\b($|\\s)"
+				"match": "^\\s*\\b(menu|do|set|get|link|report|display|accept|print|mode|primary|refresh|reenter|object|field|version-number|open|initialise)\\b($|\\s)"
 			},{
 				"name": "keyword.language.section",
-				"match": "\\b(parameters|returning|local field|local|detail|before|after)\\s+"
+				"match": "^\\s*\\b(parameters|returning|local field|local|detail|before|after)\\s+"
 			}]
 		},
 		"dates": {
