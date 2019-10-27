@@ -6,9 +6,11 @@ This is an extension that provides syntax highlighting to 4GL scripts for [Pront
 
 4GL scripts enables developers to extend or generate applications within Pronto Xi.
 
+---
+
 ## Features
 
-Here is a :camera: showing the syntax highlights.
+#### Syntax highlights :camera:
 
 ![syntax highlight](images/syntaxHighlight.png)
 
@@ -17,6 +19,7 @@ Here is a :camera: showing the syntax highlights.
 |-----------|-------|
 |Select from|<pre>select fields from table <br/>before<br/>detail<br/>after<br/>end-select</pre>|
 |Procedure|<pre>procedure name <br/>end-procedure</pre>|
+|||
 
 ---
 
