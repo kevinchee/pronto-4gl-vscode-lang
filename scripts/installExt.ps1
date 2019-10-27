@@ -9,6 +9,7 @@ If (!(Test-Path $destination))
 Write-Host Copying files to $destination
 
 Copy-Item -Path ".\syntaxes" -Destination $destination -Recurse -Force
+Copy-Item -Path ".\snippets" -Destination $destination -Recurse -Force
 Copy-Item -Path ".\language-configuration.json" -Destination $destination -Force
 Copy-Item -Path ".\LICENSE" -Destination $destination -Force
 Copy-Item -Path ".\CHANGELOG.md" -Destination $destination -Force
