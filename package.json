@@ -17,7 +17,7 @@
         "vscode": "^1.11.0"
     },
     "categories": [
-        "Programming Languages"
+        "Programming Languages", "Snippets"
     ],
     "galleryBanner": {
         "color": "#C80000",
@@ -25,6 +25,12 @@
     },
     "license": "See LICENSE",
     "contributes": {
+        "snippets": [
+            {
+              "language": "spl",
+              "path": "./snippets/snippets.json"
+            }
+        ],
         "languages": [
             {
                 "id": "spl",
