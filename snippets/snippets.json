@@ -11,5 +11,15 @@
 			"end-select"
 		],
 		"description": "Select from table"
+	},
+	"Procedure": {
+		"scope": "spl",
+		"prefix": "procedure",
+		"body": [
+			"procedure ${1:name}",
+			"$0",
+			"end-procedure"
+		],
+		"description": "New procedure"
 	}
 }
