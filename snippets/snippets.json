@@ -1,0 +1,25 @@
+{
+	"Select from": {
+		"scope": "spl",
+		"prefix": "select",
+		"body": [
+			"select ${1:fields} from ${2:table}",
+			"before",
+			"detail",
+			"$0",
+			"after",
+			"end-select"
+		],
+		"description": "Select from table"
+	},
+	"Procedure": {
+		"scope": "spl",
+		"prefix": "procedure",
+		"body": [
+			"procedure ${1:name}",
+			"$0",
+			"end-procedure"
+		],
+		"description": "New procedure"
+	}
+}

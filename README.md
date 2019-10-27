@@ -12,6 +12,17 @@ Here is a :camera: showing the syntax highlights.
 
 ![syntax highlight](images/syntaxHighlight.png)
 
+<<<<<<< Updated upstream
+=======
+#### Code snippets
+|Description|Snippet|
+|-----------|-------|
+|Select from|<pre>select fields from table <br/>before<br/>detail<br/>after<br/>end-select</pre>|
+|Procedure|<pre>procedure name <br/>end-procedure</pre>|
+
+---
+
+>>>>>>> Stashed changes
 ## Requirements
 
 :bulb: Your 4GL scripts must be named with the `.spl` extension.
