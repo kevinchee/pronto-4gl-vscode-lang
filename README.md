@@ -12,8 +12,6 @@ Here is a :camera: showing the syntax highlights.
 
 ![syntax highlight](images/syntaxHighlight.png)
 
-<<<<<<< Updated upstream
-=======
 #### Code snippets
 |Description|Snippet|
 |-----------|-------|
@@ -22,7 +20,6 @@ Here is a :camera: showing the syntax highlights.
 
 ---
 
->>>>>>> Stashed changes
 ## Requirements
 
 :bulb: Your 4GL scripts must be named with the `.spl` extension.
