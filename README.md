@@ -18,6 +18,7 @@ This is an extension that provides syntax highlighting to 4GL scripts for [Pront
 |Description|Snippet|
 |-----------|-------|
 |Select from|<pre>select fields from table <br/>before<br/>detail<br/>after<br/>end-select</pre>|
+|Procedure|<pre>procedure name <br/>end-procedure</pre>|
 |||
 
 ---
