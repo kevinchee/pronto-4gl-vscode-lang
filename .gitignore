@@ -1,5 +1,6 @@
 
 node_modules
 .pat
-.vscodeignore
 *.vsix
+.vscode-test
+out
