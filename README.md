@@ -19,11 +19,11 @@ Snapshot of notable syntax highlighting using the [VS Code default dark theme](h
 
 ### CODE SNIPPETS
 
-|Type|Snippet|
-|-----------|-------|
-|Select from|<pre>select fields from table <br/>before<br/>detail<br/>after<br/>end-select</pre>|
-|Procedure|<pre>procedure name <br/>end-procedure</pre>|
-|||
+| Type        | Snippet                                                                             |
+| ----------- | ----------------------------------------------------------------------------------- |
+| Select from | <pre>select fields from table <br/>before<br/>detail<br/>after<br/>end-select</pre> |
+| Procedure   | <pre>procedure name <br/>end-procedure</pre>                                        |
+|             |                                                                                     |
 
 ---
 

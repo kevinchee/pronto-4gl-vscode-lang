@@ -1,82 +1,84 @@
 {
-    "name": "pronto-4gl-language-definition",
-    "displayName": "Pronto 4GL Language Definition",
-    "description": "Pronto 4GL Language Definition for vscode",
-    "version": "0.3.0",
-    "publisher": "pronto-4gl-vscode-lang",
-    "homepage": "https://github.com/kevinchee/pronto-4gl-vscode-lang/blob/master/README.md",
-    "bugs": {
-        "url": "https://github.com/kevinchee/pronto-4gl-vscode-lang/issues",
-        "email": "boonchong.kevin@gmail.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/kevinchee/pronto-4gl-vscode-lang.git"
-    },
-    "engines": {
-        "vscode": "^1.11.0"
-    },
-    "categories": [
-        "Programming Languages",
-        "Snippets"
+  "name": "pronto-4gl-language-definition",
+  "displayName": "Pronto 4GL Language Definition",
+  "description": "Pronto 4GL Language Definition for vscode",
+  "version": "0.3.0",
+  "publisher": "pronto-4gl-vscode-lang",
+  "homepage": "https://github.com/kevinchee/pronto-4gl-vscode-lang/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/kevinchee/pronto-4gl-vscode-lang/issues",
+    "email": "boonchong.kevin@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevinchee/pronto-4gl-vscode-lang.git"
+  },
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "license": "See LICENSE",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "spl",
+        "path": "./snippets/snippets.json"
+      }
     ],
-    "galleryBanner": {
-        "color": "#C80000",
-        "theme": "dark"
-    },
-    "license": "See LICENSE",
-    "contributes": {
-        "snippets": [
-            {
-                "language": "spl",
-                "path": "./snippets/snippets.json"
-            }
+    "languages": [
+      {
+        "id": "spl",
+        "aliases": [
+          "Pronto 4GL",
+          "spl"
         ],
-        "languages": [
-            {
-                "id": "spl",
-                "aliases": [
-                    "Pronto 4GL",
-                    "spl"
-                ],
-                "extensions": [
-                    ".spl"
-                ],
-                "configuration": "./language-configuration.json"
-            }
+        "extensions": [
+          ".spl"
         ],
-        "grammars": [
-            {
-                "language": "spl",
-                "scopeName": "source.spl",
-                "path": "./syntaxes/spl.tmLanguage.json"
-            }
-        ]
-    },
-    "scripts": {
-        "pretest": "tsc",
-        "test": "node out/test/runTest.js",
-        "release": "standard-version",
-        "release:major": "standard-version --release-as major",
-        "release:minor": "standard-version --release-as minor",
-        "release:patch": "standard-version --release-as patch"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "pretty-quick --staged"
-        }
-    },
-    "devDependencies": {
-        "@types/glob": "^7.1.3",
-        "@types/mocha": "^8.2.2",
-        "@types/node": "^14.14.35",
-        "@types/vscode": "^1.11.0",
-        "glob": "^7.1.6",
-        "husky": "^5.2.0",
-        "mocha": "^8.3.2",
-        "prettier": "^2.2.1",
-        "pretty-quick": "^3.1.0",
-        "standard-version": "^9.1.1",
-        "vscode-test": "^1.5.1"
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "spl",
+        "scopeName": "source.spl",
+        "path": "./syntaxes/spl.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "pretest": "tsc",
+    "test": "node out/test/runTest.js",
+    "release": "standard-version",
+    "release:major": "standard-version --release-as major",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "prepare": "husky install",
+    "pretty-quick": "pretty-quick"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
     }
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^14.14.35",
+    "@types/vscode": "^1.11.0",
+    "glob": "^7.1.6",
+    "husky": "^5.2.0",
+    "mocha": "^8.3.2",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
+    "standard-version": "^9.1.1",
+    "vscode-test": "^1.5.1"
+  }
 }
