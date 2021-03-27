@@ -22,6 +22,6 @@ suite("Extension Test Suite", () => {
       path.join(__dirname + "../../../../example.spl")
     );
     const document = await vscode.workspace.openTextDocument(uri);
-    const editor = await vscode.window.showTextDocument(document);
+    const editor =      await vscode.window.showTextDocument(document);
   });
 });

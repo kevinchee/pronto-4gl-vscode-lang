@@ -54,19 +54,14 @@
     ]
   },
   "scripts": {
+    "postinstall": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks",
     "pretest": "tsc",
     "test": "node out/test/runTest.js",
     "release": "standard-version",
     "release:major": "standard-version --release-as major",
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
-    "prepare": "husky install",
-    "pretty-quick": "pretty-quick"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
+    "pretty-quick": "pretty-quick --staged"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",
