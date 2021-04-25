@@ -6,7 +6,9 @@ src/**
 .yarnrc
 vsc-extension-quickstart.md
 **/tsconfig.json
-**/.eslintrc.json
+**/.eslintrc.js
 **/*.map
 **/*.ts
 node_modules
+.husky/
+commitlint.config.js
