@@ -60,7 +60,8 @@
     "release": "standard-version",
     "release:major": "standard-version --release-as major",
     "release:minor": "standard-version --release-as minor",
-    "release:patch": "standard-version --release-as patch"
+    "release:patch": "standard-version --release-as patch",
+    "vsce": "vsce"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
@@ -79,6 +80,7 @@
     "husky": "^6.0.0",
     "mocha": "^8.3.2",
     "standard-version": "^9.2.0",
+    "vsce": "^1.88.0",
     "vscode-test": "^1.5.2"
   }
 }
