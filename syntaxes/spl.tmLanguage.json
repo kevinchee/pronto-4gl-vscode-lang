@@ -1,233 +1,278 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Pronto 4GL",
-	"patterns": [{
-		"include": "#spl"
-		}, {
-		"include": "#macros"	
-		}
-	],
-	"repository": {
-		"module": {
-			"name": "meta.function.expression",
-			"begin": "^\\s*\\b(api|procedure|screen)\\b\\s+(.+)\\n",
-			"beginCaptures": {
-				"1": { "name": "support.type"},
-				"2": { "name": "strong"}
-			},
-			"end": "^\\s*\\b(end\\-?(api|procedure|screen))\\b",
-			"endCaptures": {
-				"1": { "name": "support.type"}
-			},
-			"patterns": [{
-				"include": "#spl"
-			}]
-		},
-		"sql": {
-			"patterns": [{
-				"name": "select",
-				"begin": "\\b(select)\\b(.+)\\n",
-				"end": "\\s*\\b(end\\-?(select))\\b\\n",
-				"captures": {
-					"1": { "name": "support.function"}
-				},
-				"patterns": [{
-					"include": "#spl"
-				}]
-			}, {
-				"name": "support.function",
-				"match": "\\b(get|update|insert)\\b\\s+"
-			}]
-		},
-		"functions": {
-            "name": "meta.function.expression",
-            "begin": "\\b([a-zA-Z0-9_-]+)\\b(?=\\()",
-			"beginCaptures": {
-				"1": {
-					"name": "entity.name.function"
-				}
-			},
-            "end": "(?<=\\))",
-			"patterns": [{
-				"include": "#function-parameters"
-			}]
-		},
-		"control": {
-			"begin": "\\b(if|for|while)\\b(.+)",
-			"beginCaptures": {
-				"1": { "name": "keyword.control"},
-				"2": { "patterns": [
-					{ "include": "#condition-unscoped"},
-					{ "include": "#condition-scoped"}
-				]}
-			},
-			"end": "\\b(end\\-?(if|for|while))\\b",
-			"endCaptures": {
-				"1": { "name": "keyword.control"}
-			},
-			"patterns": [{
-				"include": "#spl"
-			}]
-		},
-		"condition-unscoped": {
-			"patterns": [{
-				"include": "#contextual-spl"
-			}]
-		},		
-		"condition-scoped": {
-			"begin": "\\(",
-			"beginCaptures": {
-				"0": {
-					"name": "punctuation.definition.parameters.begin"
-				}
-			},
-			"end": "\\)",
-			"endCaptures": {
-				"0": {
-					"name": "punctuation.definition.parameters.end"
-				}
-			},
-			"patterns": [{
-				"include": "#condition-unscoped"
-			}]
-		},
-		"function-parameters": {
-			"name": "meta.parameters",
-			"begin": "\\(",
-			"beginCaptures": {
-				"0": {
-					"name": "punctuation.definition.parameters.begin"
-				}
-			},
-			"end": "\\)",
-			"endCaptures": {
-				"0": {
-					"name": "punctuation.definition.parameters.end"
-				}
-			},
-			"patterns": [{
-				"include": "#contextual-spl"
-			},{
-				"name": "punctuation.separator.parameter",
-				"match": ","
-			}]
-		},
-		"spl": {
-			"patterns": [{
-				"include": "#type"
-			},{
-				"include": "#comment"
-			},{
-				"include": "#keywords"
-			},{
-				"include": "#strings"
-			},{ 
-				"include": "#module"
-			},{ 
-				"include": "#functions"
-			},{
-				"include": "#control"
-			},{
-				"include": "#sql"
-			},{
-				"include": "#constant"
-			},{
-				"include": "#dates"
-			}]
-		},
-		"contextual-spl": {
-			"patterns": [
-				{"include": "#constant"},
-				{"include": "#comment"},
-				{"include": "#strings"},
-				{"include": "#dates"},
-				{"include": "#functions"}
-			]
-		},
-		"constant":	{
-			"patterns": [{
-				"match": "(?i)[^\\w\\-_]\\b(ZERO|SPACES|TRUE|FALSE|YES|NO)\\b",
-				"captures": {
-					"1": { "name": "keyword.other" }
-				}
-			}]
-		},
-		"type": {
-		 	"patterns": [{
-				"name": "support.type",
-				"match": "(type)\\s\\b(x|int|blob|boolean|alpha|xml-handle|string|date|time)\\b",
-				"captures": {
-					"1": {"name": "support.type"},
-					"2": {"name": "storage.type"}
-				}
-			},{
-				"name": "support.type",
-				"match": "(like)\\s\\b([a-zA-Z0-9_-]+)\\b",
-				"captures": {
-					"1": { "name": "support.type"},
-					"2": { "name": "variable"}
-				}
-			}, {
-				"name": "support.type",
-				"match": "(pic)\\s\\b([a-zA-Z0-9_-]+)\\b",
-				"captures": {
-					"1": { "name": "support.type"},
-					"2": { "name": "storage.type"}
-				}
-			}]
-		},	
-		"comment": {
-			"patterns": [{
-				"name": "comment.line.double-slash",
-				"match": "//.*$"				
-			}]
-		},
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.operator",
-				"match": "(?i)\\s\\b(to|or|and|not|in|\\+|-|=|\\*|/|\\+=|-=|\\*=|/=|!=|<=|>=|<|>|<>)\\b\\s"
-			}, {
-				"name": "keyword.control",
-				"match": "^\\s*\\b(exit|break)\\b"
-			},{
-				"name": "keyword.other",
-				"match": "^\\s*\\b(menu|do|set|get|link|report|display|accept|print|mode|primary|refresh|reenter|object|field|version-number|open|initialise)\\b($|\\s)"
-			},{
-				"name": "keyword.language.section",
-				"match": "^\\s*\\b(parameters|returning|local field|local|detail|before|after)\\s+"
-			}]
-		},
-		"dates": {
-			"patterns": [{
-				"name": "constant.other",
-				"match": "\\b(\\d{1,2}-[A-Za-z]{3}+-\\d{4})\\b"
-			}]
-		},
-		"macros": {
-			"patterns": [{
-				"name": "keyword.other",
-				"match": "^#(define|include|ifndef|if|else|endif)\\b"
-			}]
-		},
-		"strings": {
-			"patterns": [{
-				"name": "string.quoted.double",
-				"begin": "\"",
-				"end": "\"",
-				"patterns": [{
-					"name": "constant.character.escape",
-					"match": "\\\\."
-				}]
-			},{
-				"name": "string.quoted.single",
-				"begin": "'",
-				"end": "'",
-				"patterns": [{
-					"name": "constant.character.escape",
-					"match": "\\\\."
-				}]
-			}]
-		}
-	},
-	"scopeName": "source.spl"
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Pronto 4GL",
+  "patterns": [
+    {
+      "include": "#spl"
+    },
+    {
+      "include": "#macros"
+    }
+  ],
+  "repository": {
+    "module": {
+      "name": "meta.function.expression",
+      "begin": "^\\s*\\b(api|procedure|screen)\\b\\s+(.+)\\n",
+      "beginCaptures": {
+        "1": { "name": "support.type" },
+        "2": { "name": "strong" }
+      },
+      "end": "^\\s*\\b(end\\-?(api|procedure|screen))\\b",
+      "endCaptures": {
+        "1": { "name": "support.type" }
+      },
+      "patterns": [
+        {
+          "include": "#spl"
+        }
+      ]
+    },
+    "sql": {
+      "patterns": [
+        {
+          "name": "select",
+          "begin": "\\b(select)\\b(.+)\\n",
+          "end": "\\s*\\b(end\\-?(select))\\b\\n",
+          "captures": {
+            "1": { "name": "support.function" }
+          },
+          "patterns": [
+            {
+              "include": "#spl"
+            }
+          ]
+        },
+        {
+          "name": "support.function",
+          "match": "\\b(get|update|insert)\\b\\s+"
+        }
+      ]
+    },
+    "functions": {
+      "name": "meta.function.expression",
+      "begin": "\\b([a-zA-Z0-9_-]+)\\b(?=\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function"
+        }
+      },
+      "end": "(?<=\\))",
+      "patterns": [
+        {
+          "include": "#function-parameters"
+        }
+      ]
+    },
+    "control": {
+      "begin": "\\b(if|for|while)\\b(.+)",
+      "beginCaptures": {
+        "1": { "name": "keyword.control" },
+        "2": {
+          "patterns": [
+            { "include": "#condition-unscoped" },
+            { "include": "#condition-scoped" }
+          ]
+        }
+      },
+      "end": "\\b(end\\-?(if|for|while))\\b",
+      "endCaptures": {
+        "1": { "name": "keyword.control" }
+      },
+      "patterns": [
+        {
+          "include": "#spl"
+        }
+      ]
+    },
+    "condition-unscoped": {
+      "patterns": [
+        {
+          "include": "#contextual-spl"
+        }
+      ]
+    },
+    "condition-scoped": {
+      "begin": "\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.parameters.begin"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.parameters.end"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#condition-unscoped"
+        }
+      ]
+    },
+    "function-parameters": {
+      "name": "meta.parameters",
+      "begin": "\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.parameters.begin"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.parameters.end"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#contextual-spl"
+        },
+        {
+          "name": "punctuation.separator.parameter",
+          "match": ","
+        }
+      ]
+    },
+    "spl": {
+      "patterns": [
+        {
+          "include": "#type"
+        },
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#module"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#control"
+        },
+        {
+          "include": "#sql"
+        },
+        {
+          "include": "#constant"
+        },
+        {
+          "include": "#dates"
+        }
+      ]
+    },
+    "contextual-spl": {
+      "patterns": [
+        { "include": "#constant" },
+        { "include": "#comment" },
+        { "include": "#strings" },
+        { "include": "#dates" },
+        { "include": "#functions" }
+      ]
+    },
+    "constant": {
+      "patterns": [
+        {
+          "match": "(?i)[^\\w\\-_]\\b(ZERO|SPACES|TRUE|FALSE|YES|NO)\\b",
+          "captures": {
+            "1": { "name": "keyword.other" }
+          }
+        }
+      ]
+    },
+    "type": {
+      "patterns": [
+        {
+          "name": "support.type",
+          "match": "(type)\\s\\b(x|int|blob|boolean|alpha|xml-handle|string|date|time)\\b",
+          "captures": {
+            "1": { "name": "support.type" },
+            "2": { "name": "storage.type" }
+          }
+        },
+        {
+          "name": "support.type",
+          "match": "(like)\\s\\b([a-zA-Z0-9_-]+)\\b",
+          "captures": {
+            "1": { "name": "support.type" },
+            "2": { "name": "variable" }
+          }
+        },
+        {
+          "name": "support.type",
+          "match": "(pic)\\s\\b([a-zA-Z0-9_-]+)\\b",
+          "captures": {
+            "1": { "name": "support.type" },
+            "2": { "name": "storage.type" }
+          }
+        }
+      ]
+    },
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash",
+          "match": "//.*$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.operator",
+          "match": "(?i)\\s\\b(to|or|and|not|in|\\+|-|=|\\*|/|\\+=|-=|\\*=|/=|!=|<=|>=|<|>|<>)\\b\\s"
+        },
+        {
+          "name": "keyword.control",
+          "match": "^\\s*\\b(exit|break)\\b"
+        },
+        {
+          "name": "keyword.other",
+          "match": "^\\s*\\b(menu|do|set|get|link|report|display|accept|print|mode|primary|refresh|reenter|object|field|version-number|open|initialise)\\b($|\\s)"
+        },
+        {
+          "name": "keyword.language.section",
+          "match": "^\\s*\\b(parameters|returning|local field|local|detail|before|after)\\s+"
+        }
+      ]
+    },
+    "dates": {
+      "patterns": [
+        {
+          "name": "constant.other",
+          "match": "\\b(\\d{1,2}-[A-Za-z]{3}+-\\d{4})\\b"
+        }
+      ]
+    },
+    "macros": {
+      "patterns": [
+        {
+          "name": "keyword.other",
+          "match": "^#(define|include|ifndef|if|else|endif)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double",
+          "begin": "\"",
+          "end": "\""
+        },
+        {
+          "name": "string.quoted.single",
+          "begin": "'",
+          "end": "'"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.spl"
 }

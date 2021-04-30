@@ -8,9 +8,9 @@ procedure proc1
         lr-field        like serial
     
     set lr-field = 1234
-    set lf-field = "12-MMM-2019\n"
-    set lf-field = 'string\n'
-    set lf-field = 12-MMM-2019
+    set lp-field = "12-MMM-2019"
+    set lp-field = 'string'
+    set lp-field = 12-MMM-2019
 end-procedure //example procedure
 
 api testAPI
