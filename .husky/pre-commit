@@ -2,5 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx eslint .
-npm run pretty-quick --staged
 npm test

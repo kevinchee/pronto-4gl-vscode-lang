@@ -1,7 +1,6 @@
 # pronto-4gl-language-definition README
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 This is a language extension that provides syntax highlighting to 4GL scripts for [Pronto Xi ERP](https://www.pronto.net/products/pronto-xi-erp/). The extension is built following [VS Code Language Extensions](https://code.visualstudio.com/api/language-extensions/overview).
 
